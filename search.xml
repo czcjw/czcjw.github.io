@@ -31,6 +31,11 @@
       </tags>
   </entry>
   <entry>
+    <title>计算机组成原理</title>
+    <url>/2020/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<h3 id="第一篇-概论"><a href="#第一篇-概论" class="headerlink" title="第一篇 概论"></a>第一篇 概论</h3>]]></content>
+  </entry>
+  <entry>
     <title>寻址方式</title>
     <url>/2020/05/25/%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="1-立即数寻址"><a href="#1-立即数寻址" class="headerlink" title="1. 立即数寻址"></a>1. 立即数寻址</h2><p><code>操作码</code>字段后面的地址部分<u>即是操作数本身，数据包含在指令当中</u>，取出指令，也就取出了可以立即使用的<code>操作数</code>。</p>
@@ -41,23 +46,16 @@
 <h2 id="3-寄存器移位寻址"><a href="#3-寄存器移位寻址" class="headerlink" title="3. 寄存器移位寻址"></a>3. 寄存器移位寻址</h2><p><code>寄存器移位寻址</code>是<code>ARM</code>指令集特有的寻址方式。当<strong>第二个操作数</strong>是寄存器方式时，<strong>第二个寄存器操作数</strong>在与<strong>第一个操作数</strong>结合之前，先进行移位操作。</p>
 <figure class="highlight tp"><table><tr><td class="code"><pre><span class="line">MOV <span class="keyword">R</span><span class="number">0</span>,<span class="keyword">R</span><span class="number">2</span>,LSL #<span class="number">3</span>  ;<span class="keyword">R</span><span class="number">2</span>的值左移<span class="number">3</span>位，结果放入<span class="keyword">R</span><span class="number">0</span></span><br><span class="line">ANDS <span class="keyword">R</span><span class="number">1</span>,<span class="keyword">R</span><span class="number">1</span>,<span class="keyword">R</span><span class="number">2</span>,LSL <span class="keyword">R</span><span class="number">3</span>  ;<span class="keyword">R</span><span class="number">2</span>的值左移<span class="keyword">R</span><span class="number">3</span>位,然后和<span class="keyword">R</span><span class="number">1</span>相“与”,结果放入<span class="keyword">R</span><span class="number">1</span>中</span><br></pre></td></tr></table></figure>
 <p><code>可采用的移位操作数如下:</code></p>
-<ul>
-<li><code>LSL</code>：<strong>逻辑左移</strong>，寄存器中的字的低端空出的位补零</li>
-<li><code>LSR</code>：<strong>逻辑右移</strong>，寄存器中的字的高端空出的位补零</li>
-<li><code>ASR</code>：<strong>算数右移</strong>，移位过程中保持符号位不变，若源操作数为正数，则字的高端空出的位补零，否则补1。</li>
-<li><code>ROR</code>：<strong>循环右移</strong>，由字的低端溢出的位填入字的高端空出的位。</li>
-<li><code>RRX</code>：<strong>带扩展的循环右移</strong>，操作数右移1位，高端空出的位用原C标志填充</li>
-</ul>
+<blockquote>
+<p><code>LSL</code>：<strong>逻辑左移</strong>，寄存器中的字的低端空出的位补零<br><code>LSR</code>：<strong>逻辑右移</strong>，寄存器中的字的高端空出的位补零<br><code>ASR</code>：<strong>算数右移</strong>，移位过程中保持符号位不变，若源操作数为正数，则字的高端空出的位补零，否则补1。<br><code>ROR</code>：<strong>循环右移</strong>，由字的低端溢出的位填入字的高端空出的位。<br><code>RRX</code>：<strong>带扩展的循环右移</strong>，操作数右移1位，高端空出的位用原C标志填充</p>
+</blockquote>
 <h2 id="4-寄存器间接寻址"><a href="#4-寄存器间接寻址" class="headerlink" title="4. 寄存器间接寻址"></a>4. 寄存器间接寻址</h2><p><code>寄存器间接寻址</code>指令中地址码给出的是一个通用寄存器的编号，所需的<code>操作数</code>保存在<u>寄存器指定地址单元</u>中，即<u>寄存器为操作数的地址指针</u>。</p>
 <figure class="highlight tp"><table><tr><td class="code"><pre><span class="line">LDR <span class="keyword">R</span><span class="number">1</span>,[<span class="keyword">R</span><span class="number">2</span>] ;将<span class="keyword">R</span><span class="number">2</span>指向的储存单元的数据读出，保存在<span class="keyword">R</span><span class="number">1</span>中</span><br><span class="line">SWP <span class="keyword">R</span><span class="number">1</span>,<span class="keyword">R</span><span class="number">1</span>,[<span class="keyword">R</span><span class="number">2</span>] ;将寄存器<span class="keyword">R</span><span class="number">1</span>的值和<span class="keyword">R</span><span class="number">2</span>指定的储存单元的内容交换</span><br></pre></td></tr></table></figure>
 <h2 id="5-基址变址寻址"><a href="#5-基址变址寻址" class="headerlink" title="5. 基址变址寻址"></a>5. 基址变址寻址</h2><p><code>基址变址寻址</code>就是将<strong>寄存器(该寄存器一般称作基址寄存器)的内容与指令中给出的地址偏移量相加</strong>，从而得到一个操作数的有效地址。变址寻址方式常用于访问某基地址附近的地址单元。采用变址寻址的指令常见的有以下几种形式：</p>
 <figure class="highlight tp"><table><tr><td class="code"><pre><span class="line">LDR <span class="keyword">R</span><span class="number">0</span>,[<span class="keyword">R</span><span class="number">1</span>,#<span class="number">4</span>]  ;<span class="keyword">R</span><span class="number">0</span>←[<span class="keyword">R</span><span class="number">1</span>+<span class="number">4</span>]</span><br><span class="line">LDR <span class="keyword">R</span><span class="number">0</span>,[<span class="keyword">R</span><span class="number">1</span>,#<span class="number">4</span>]<span class="comment">! ;</span><span class="keyword">R</span><span class="number">0</span>←[<span class="keyword">R</span><span class="number">1</span>+<span class="number">4</span>],R1R←<span class="number">1</span>+<span class="number">4</span></span><br><span class="line">LDR <span class="keyword">R</span><span class="number">0</span>,[<span class="keyword">R</span><span class="number">1</span>],#<span class="number">4</span>  ;<span class="keyword">R</span><span class="number">0</span>←[<span class="keyword">R</span><span class="number">1</span>],<span class="keyword">R</span><span class="number">1</span>←<span class="keyword">R</span><span class="number">1</span>+<span class="number">4</span></span><br><span class="line">LDR <span class="keyword">R</span><span class="number">0</span>,[<span class="keyword">R</span><span class="number">1</span>,<span class="keyword">R</span><span class="number">2</span>]  ;<span class="keyword">R</span><span class="number">0</span>←[<span class="keyword">R</span><span class="number">1</span>+<span class="keyword">R</span><span class="number">2</span>]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在第一条指令中，将寄存器R1的内容加上<code>4</code>形成操作数的有效地址，从该地址取得操作数存入寄存器器R0中。</li>
-<li>在第二条指令中，将寄存器R1的内容加上<code>4</code>形成操作数的有效地址，从该地址取得操作数存入寄存器R0中，然后,R1的内容自增四个字节。</li>
-<li>在第三条指令中，以寄存器R1的内容作为操作数的有效地址，从该地址取得操作数存入计算机R0中，然后,R1的内容自增<code>4</code>个字节。</li>
-<li>在第四条指令中，将寄存器R1的内容加上寄存器R2的内容，形成操作数的有效地址，从该地址取得操作数存入寄存器R0中。</li>
-</ul>
+<blockquote>
+<p>在第一条指令中，将寄存器R1的内容加上<code>4</code>形成操作数的有效地址，从该地址取得操作数存入寄存器器R0中。<br>在第二条指令中，将寄存器R1的内容加上<code>4</code>形成操作数的有效地址，从该地址取得操作数存入寄存器R0中，然后,R1的内容自增四个字节。<br>在第三条指令中，以寄存器R1的内容作为操作数的有效地址，从该地址取得操作数存入计算机R0中，然后,R1的内容自增<code>4</code>个字节。<br>在第四条指令中，将寄存器R1的内容加上寄存器R2的内容，形成操作数的有效地址，从该地址取得操作数存入寄存器R0中。</p>
+</blockquote>
 <h2 id="6-多寄存器寻址"><a href="#6-多寄存器寻址" class="headerlink" title="6. 多寄存器寻址"></a>6. 多寄存器寻址</h2><p>采用<strong>多寄存器寻址方式</strong>，一条指令可以完成多个寄存器值的传送，这种寻址方式可以用一条指令完成传送送最多<code>16</code>个通用寄存器的值。</p>
 <figure class="highlight tp"><table><tr><td class="code"><pre><span class="line">LDMIA <span class="keyword">R</span><span class="number">0</span>,&#123;<span class="keyword">R</span><span class="number">1</span>,<span class="keyword">R</span><span class="number">2</span>,<span class="keyword">R</span><span class="number">3</span>,<span class="keyword">R</span><span class="number">4</span>&#125; ;<span class="keyword">R</span><span class="number">1</span>←[<span class="keyword">R</span><span class="number">0</span>],<span class="keyword">R</span><span class="number">2</span>[<span class="keyword">R</span><span class="number">0</span>+<span class="number">4</span>],<span class="keyword">R</span><span class="number">3</span>[<span class="keyword">R</span><span class="number">0</span>+<span class="number">8</span>],<span class="keyword">R</span><span class="number">4</span>[<span class="keyword">R</span><span class="number">0</span>+<span class="number">12</span>]</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -70,10 +68,5 @@
 <p><strong>满递增堆栈</strong>：堆栈指针指向最后压入的数据，且由<code>低地址向高地址生成</code>。<br><strong>满递减堆栈</strong>：堆栈指针指向最后压入的数据，且由<code>高地址向低地址生成</code>。<br><strong>空递增堆栈</strong>：堆栈指针指向下一个将要放入数据的空位置，且由<code>低地址向高地址生成</code>。<br><strong>空递减堆栈</strong>：堆栈指针指向下一个将要放入数据的空位置，且由<code>高地址向低地址生成</code>。</p>
 </blockquote>
 ]]></content>
-  </entry>
-  <entry>
-    <title>计算机组成原理</title>
-    <url>/2020/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<h3 id="第一篇-概论"><a href="#第一篇-概论" class="headerlink" title="第一篇 概论"></a>第一篇 概论</h3>]]></content>
   </entry>
 </search>
