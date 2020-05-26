@@ -19,6 +19,18 @@
 ]]></content>
   </entry>
   <entry>
+    <title>hello</title>
+    <url>/2020/05/08/hello/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>参数化</tag>
+        <tag>性能测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>寻址方式</title>
     <url>/2020/05/25/%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="1-立即数寻址"><a href="#1-立即数寻址" class="headerlink" title="1. 立即数寻址"></a>1. 立即数寻址</h2><p><code>操作码</code>字段后面的地址部分<u>即是操作数本身，数据包含在指令当中</u>，取出指令，也就取出了可以立即使用的<code>操作数</code>。</p>
@@ -56,17 +68,5 @@
     <title>计算机组成原理</title>
     <url>/2020/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h3 id="第一篇-概论"><a href="#第一篇-概论" class="headerlink" title="第一篇 概论"></a>第一篇 概论</h3>]]></content>
-  </entry>
-  <entry>
-    <title>hello</title>
-    <url>/2020/05/08/hello/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>参数化</tag>
-        <tag>性能测试</tag>
-      </tags>
   </entry>
 </search>
